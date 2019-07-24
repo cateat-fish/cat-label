@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cat-mask": "/components/cat-mask",
+    "cat-filter-view": "/components/cat-filter/cat-filter-view"
+  },
+  "component": true
+}

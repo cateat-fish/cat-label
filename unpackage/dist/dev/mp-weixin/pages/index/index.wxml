@@ -1,0 +1,1 @@
+<view class="index"><navigator url="/pages/login/login">登录</navigator><navigator url="/pages/register/register">注册</navigator><navigator url="/pages/all/all">所有示例</navigator></view>

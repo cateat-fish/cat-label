@@ -1,0 +1,1 @@
+<view class="_cpimg"><canvas style="{{'width:'+(cWidth+'px')+';'+('height:'+(cHeight+'px')+';')}}" id="_myCanvas" canvas-id="_myCanvas"></canvas></view>

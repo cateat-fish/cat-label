@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索示例",
+  "usingComponents": {
+    "cat-label": "/components/cat-label"
+  }
+}

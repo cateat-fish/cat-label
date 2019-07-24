@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"btns{margin: ",[0,24]," ",[0,30],";display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}\n.",[1],"btns .",[1],"btn{width: 45%;}\n",],undefined,{path:"./pages/login/login.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/login.wxml') } }));

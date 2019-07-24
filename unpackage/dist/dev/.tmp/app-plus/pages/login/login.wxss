@@ -1,0 +1,4 @@
+
+.btns{margin: 24rpx 30rpx;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
+.btns .btn{width: 45%;}
+

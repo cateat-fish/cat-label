@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "test-input": "/components/testInput",
+    "cat-filter": "/components/cat-filter/cat-filter",
+    "search": "/components/mehaotian-search-revision/mehaotian-search-revision"
+  }
+}

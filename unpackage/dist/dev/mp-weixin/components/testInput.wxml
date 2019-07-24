@@ -1,0 +1,1 @@
+<view class="content-box"><input type="text" data-event-opts="{{[['input',[['__set_model',['','inputVal','$event',[]]],['inputChange',['$event']]]]]}}" value="{{inputVal}}" bindinput="__e"/></view>

@@ -21,7 +21,7 @@
         ,{
             "path" : "pages/all/all",
             "style" : {
-				"navigationBarTitleText": "搜索示例"
+				"navigationBarTitleText": "部分示例"
 			}
         }
     ],

@@ -23,7 +23,7 @@
 <script>
 	var  checker = require("@/common/checker.js");
 	import {formateDate,formatMoneyAuto} from "@/common/catUtil.js"
-	import catLabel from "@/components/cat-label.vue"
+	import catLabel from "@/components/cat-label/cat-label.vue"
 	export default {
 		components:{catLabel},
 		data() {

@@ -14,7 +14,7 @@
 
 <script>
 	var  checker = require("@/common/checker.js");
-	import catLabel from "@/components/cat-label.vue"
+	import catLabel from "@/components/cat-label/cat-label.vue"
 	export default {
 		components:{catLabel},
 		data() {

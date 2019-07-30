@@ -8,11 +8,12 @@
 #### 使用说明
 + import catLabel from "@/components/cat-label/cat-label.vue"
 + components:{catLabel}
-+ ``` html
+``` html
 <catLabel dataType="text" text="账号"  />
 ```
+
 #### 表单验证说明
-```javascript
+``` javascript
 var  checker = require("@/common/checker.js");
 var rule = [
 	{name:"username", checkType : "username",  errorMsg:"请正确输入的账号"},
@@ -44,12 +45,12 @@ if(checkRes){
 | mode | String | 'default' | 'labelTop' | 显示的方式 'default' 'labelTop' 左右 上下 |
 #### dataType 为 空 时
 + 主要用于数据展示
++ 
 ``` html
 <catLabel text="账号" :dataText="upData.user"  />
-```
-````html
 <catLabel v-for="(item,index) in Arr" :key='index' :text="item.text" :dataText="item.data"  />
 ```
+
 ```javascript
 Arr:[
 	{text:'text1',data:'123'},
@@ -127,5 +128,6 @@ Arr:[
 | useReg | Boolean | false |  | dataType 为text 时 ，失去焦点时是否验证  |
 | reg | RegExp | default: ()=>/(?:)/ |  | 验证的正则表达式  |
 | regText | String | '' | 1 | 验证失败的文字提示  |
+
 
 ### End

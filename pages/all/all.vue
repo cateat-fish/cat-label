@@ -1,87 +1,73 @@
 <template>
 	<view>
-		<catLabel/>
-		<catLabel text="账号" :dataText="upData.username" />
-		<catLabel text="账号" :hasX="true" :noP="true" dataType='text' :value="upData.username" v-model="upData.username" />
-		<catLabel text="密码" :hasX="true" textAlign="center" dataType='text' :value="upData.password" v-model="upData.password" inputType="password" />
-		<catLabel :hasR='true' text="单选" :selectList="selectList" dataType='selector' :initIndex="initIndex" icon="arrowdown" :dataText="upData.date" @handSelect="handSelect"  />
-		<catLabel :hasR='true' text="注册日期" textAlign="right" dataType='date' :dataText="upData.date" @handDate="handDate"  />
-		<catLabel :hasR='true' text="注册时间"  dataType='time' :dataText="upData.time" @handTime="handTime"  />
-		<catLabel :hasR='true' text="日期时间"  dataType='dateTime' :dataText="upData.datetime" @handDateTime="handDateTime"  />
-		<catLabel :hasR='true' text="活动时间"  dataType='range' :dataText="upData.range" @handRange="handRange"  />
-		<catLabel mode="labelTop" text="备注" dataType='textarea' :value="upData.remarks"  v-model="upData.remarks"    />
-		<catLabel mode="labelTop" text="照片" @getImg="getImg" dataType='img' :editImg='true' :imgList="upData.imgs" :dataText="upData.date"  />
+		<catLabel dataType="text" text="账号"  />
+		<catLabel dataType="text" inputType="number" text="数字"  />
+		<catLabel dataType="text" inputType="password" text="密码"  />
+		<catLabel dataType="text" text="账号" v-model="upData.user"   />
+		<catLabel text="账号" :dataText="upData.user"  />
+		<catLabel v-for="(item,index) in Arr" :key='index' :text="item.text" :dataText="item.data"  />
+		
+		<catLabel dataType="textarea" text="备注" :dataText="upData.user"  />
+		<catLabel dataType="click" @handClick="handClick" text="位置" :hasR="true" icon="location" />
 		
 		
-		<catLabel text="金额" :value='upData.money' v-model='upData.money' :showRightText='true' rightText='万元'  inputType='number' dataType="text" />
+		<catLabel dataType="img" text="图片资料" :imgNumber='1' :imgList="imgList"  :dataText="upData.user"  />
+		<catLabel text='单选' @handSelect="handSelect" :initIndex="initIndex" dataType="selector" :selectList="selectList" />
+		<catLabel text="日期选择" dataType="date" :hasR="true" :dataText="upData.date"  />
+		<catLabel text="时间选择" dataType="time" :hasR="true" :dataText="upData.time" />
+		<catLabel text="日期时间选择" dataType="dateTime" :hasR="true" :dataText="upData.dateTime" />
+		<catLabel text="日期间隔" dataType="range" :hasR="true" :dataText="upData.range" />
 		
-		<catLabel text="金额" @blur="blur" :value='upData.money2' v-model='upData.money2'   dataType="text" />
-		
+		<catLabel text="年月选择" dataType="yearMonth" @handYearMonth ="handYearMonth" />
+		<catLabel text="省市县选择" dataType="region"  @handRegion ="handRegion" />
+		<catLabel text="短时间选择" dataType="limit"  @handLimit ="handLimit" />
 	</view>
 </template>
 
 <script>
-	var  checker = require("@/common/checker.js");
-	import {formateDate,formatMoneyAuto} from "@/common/catUtil.js"
 	import catLabel from "@/components/cat-label/cat-label.vue"
 	export default {
 		components:{catLabel},
 		data() {
 			return {
 				upData:{
-					username:'username123',
-					password:'123@qQ.com',
-					date:formateDate(new Date(),"Y-M-D"),
+					user:'username123',
+					pass:'password123',
 					remarks:'',
-					imgs:[],
-					time:formateDate(new Date(),"h:min:s"),
-					datetime:formateDate(new Date(),"Y-M-D h:min:s"),
-					range:'点击选择',
-					select:'',
-					money:'',
-					money2:'',
+					date:'点击选择日期',
+					time:'点击选择时间',
+					dateTime:'点击选择日期时间',
+					range:'点击选择日期间隔'
 				},
+				Arr:[
+					{text:'text1',data:'123'},
+					{text:'text2',data:'456'}
+				],
+				imgList:[
+					'/static/logo.png'
+				],
+				selectList:[{label:'text1',value:1,index:0},{label:'text2',value:99,index:1}],
 				initIndex:0,
-				selectList:[
-					{label:'保密',value:'0'},
-					{label:'男',value:'1'},
-					{label:'女',value:'2'},
-				]
 			}
 		},
-		onLoad() {
-			this.selectList.map((item,index)=>{
-				item.index = index
-			})
-			
-		},
 		methods: {
-			blur(val){
-				this.upData.money2 = formatMoneyAuto(val)
+			handClick(){
+				console.log(1)
 			},
 			handSelect(val){
 				this.initIndex = val.checkArr.index;
-				this.upData.select = val.checkArr.value
 			},
-			handDate(val){
-				this.upData.date = val.result;
+			
+			handYearMonth(val){
+				console.log(val)
 			},
-			handTime(val){
-				this.upData.time = val.result;
+			handRegion(val){
+				console.log(val)
 			},
-			handDateTime(val){
-				this.upData.datetime = val.result;
-			},
-			handRange(val){
-				this.upData.range = val.result;
-			},
-			getImg(val){
-				this.upData.imgs = [];
-				val.map(item=>{
-					this.upData.imgs.push(item)
-				})
+			handLimit(val){
+				console.log(val)
 			}
-		}
+		},
 	}
 </script>
 

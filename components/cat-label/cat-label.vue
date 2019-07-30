@@ -18,7 +18,7 @@
 				<!-- click -->
 				
 				<!-- img -->
-				<view  v-if="dataType == 'img' && copyimgList" class="data-l modeImg" @tap="toggleTabGetImg">
+				<view  v-if="dataType == 'img' " class="data-l modeImg" @tap="toggleTabGetImg">
 					<cpimg v-if="dataType == 'img' && copyimgList"  ref="cpimgs" :number='ImgNumber' @result="cpimgOk" :iscamera="true" @err="cpimgErr" :fixOrientation="true" :size="500" :maxWidth="1000"
 					 :ql="0.9" type="base64" />
 					<view v-if="dataType == 'img' && copyimgList" class="imgs"  v-for="(itemImg,indexImg) in copyimgList" :key="indexImg">
@@ -96,8 +96,30 @@
 				<view v-if="dataType == 'range'"  @tap="toggleTabRange" class="data-l">
 					<view>{{dataText}}</view>
 				</view>
-				<w-picker v-if="dataType == 'range'"  mode="range"  dayStep="60" startHour="8" :endYear="endYear" endHour="20" minuteStep="5" afterStep="30" :defaultVal="[0,0,0]" :current="true" @confirm="onConfirm5" ref="range"  themeColor="#f00" />
+				<w-picker v-if="dataType == 'range'"  mode="range"  dayStep="60" :startHour="startHour" :endYear="endYear" :endHour="endHour" :minuteStep="minuteStep" afterStep="30" :defaultVal="[0,0,0]" :current="true" @confirm="onConfirm5" ref="range"  themeColor="#f00" />
 				<!-- mode range -->
+				
+				<!-- mode yearMonth -->
+				<view v-if="dataType == 'yearMonth'"  @tap="toggleTabYearMonth" class="data-l">
+					<view>{{dataText}}</view>
+				</view>
+				<w-picker v-if="dataType == 'yearMonth'"  mode="yearMonth"  dayStep="60" :startHour="startHour" :endYear="endYear" :endHour="endHour" :minuteStep="minuteStep" afterStep="30" :defaultVal="[0,0,0]" :current="true" @confirm="onConfirm6" ref="yearMonth"  themeColor="#f00" />
+				<!-- mode yearMonth -->
+				
+				<!-- mode region -->
+				<view v-if="dataType == 'region'"  @tap="toggleTabRegion" class="data-l">
+					<view>{{dataText}}</view>
+				</view>
+				 <w-picker  v-if="dataType =='region' " mode="region" :defaultVal="[0,0,0]"  @confirm="onConfirm7"  ref="region"  themeColor="#f00"></w-picker>
+				<!-- mode region -->
+				
+				<!-- mode limit -->
+				<view v-if="dataType == 'limit'"  @tap="toggleTabLimit" class="data-l">
+					<view>{{dataText}}</view>
+				</view>
+				<w-picker v-if="dataType =='limit' "  mode="limit"  dayStep="60" :startHour="startHour" :endHour="endHour" :minuteStep="minuteStep" :afterStep="afterStep" :defaultVal="[0,0,0]" :current="true"  @confirm="onConfirm8" ref="limit"   themeColor="#f00" ></w-picker>
+				<!-- mode limit-->
+				
 				
 				<!-- 右侧 -->
 				<view v-if="hasR" class="data-r" @tap="rightClick">
@@ -183,6 +205,22 @@
 			endYear:{
 				type:String,
 				default:'2030'
+			},
+			startHour:{
+				type:String,
+				default:'8'
+			},
+			endHour:{
+				type:String,
+				default:'20'
+			},
+			minuteStep:{
+				type:String,
+				default:'5'
+			},
+			afterStep:{
+				type:String,
+				default:'30'
 			},
 			editImg:{
 				type:Boolean,
@@ -290,6 +328,7 @@
 					this.copyimgList.push(item)
 				});
 				this.ImgNumber = this.imgNumber - this.copyimgList.length;
+				uni.hideLoading()
 				this.$emit('getImg',this.copyimgList)
 			},
 			cpimgErr(e) {
@@ -307,6 +346,7 @@
 			
 			textFocus(){
 				this.staticColor = 'default';
+				this.$emit('focus')
 			},
 			textBlur(event){
 				if(this.useReg){
@@ -330,7 +370,7 @@
 				this.$emit("input",event.target.value);
 			},
 			toggleTabClick(){
-				this.$emit("handleconfirmClick");
+				this.$emit("handClick");
 			},
 			toggleTabImg(){
 				console.log(1)
@@ -347,7 +387,6 @@
 				
 			},
 			showPreview(index){
-				console.log(1)
 				if(!this.preview){
 					return
 				}
@@ -380,7 +419,17 @@
 			},
 			toggleTabRange(){
 				this.$refs.range.show();
-			},	
+			},
+			toggleTabYearMonth(){
+				this.$refs.yearMonth.show();
+			},
+			toggleTabRegion(){
+				this.$refs.region.show();
+			},
+			toggleTabLimit(){
+				this.$refs.limit.show();
+			},
+			
 			onConfirm(val){
 				this.tabIndex=val.checkArr.index;
 				this.$emit("handSelect",val);
@@ -396,6 +445,15 @@
 			},
 			onConfirm5(val){
 				this.$emit("handRange",val);
+			},
+			onConfirm6(val){
+				this.$emit("handYearMonth",val);
+			},
+			onConfirm7(val){
+				this.$emit("handRegion",val);
+			},
+			onConfirm8(val){
+				this.$emit("handLimit",val);
 			},
 		}
 	}
